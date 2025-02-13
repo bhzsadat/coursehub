@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import UserContext from '../context/UserContext.jsx';
 import ValidationErrors from './ValidationErrors.jsx';
 
+// Update component
 const Update = () => {
     const { id } = useParams();
     const [courseTitle, setCourseTitle] = useState("");

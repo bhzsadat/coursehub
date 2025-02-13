@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../context/UserContext.jsx';
 
+// SignIn component
 const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -13,7 +14,7 @@ const SignIn = () => {
         event.preventDefault();
         try {
             await signIn(email, password);
-            navigate('/'); // Redirect to the home page or another protected route
+            navigate('/');
         } catch (error) {
             setErrors([error.message]);
         }

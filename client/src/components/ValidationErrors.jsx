@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 
+// ValidationErrors component
 const ValidationErrors = ({ errors }) => {
     if (errors.length === 0) {
         return null;

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 
+// Error component
 const Error = () => (
     <div className="wrap">
         <h2>Error</h2>

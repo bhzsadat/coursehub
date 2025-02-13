@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+// Courses component
 const Courses = () => {
     const [courses, setCourses] = useState([]);
 

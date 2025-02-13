@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 
+// Forbidden component
 const Forbidden = () => (
     <div className="wrap">
         <h2>Forbidden</h2>

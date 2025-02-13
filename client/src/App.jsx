@@ -11,7 +11,7 @@ import Forbidden from './components/Forbidden';
 import Error from './components/Error';
 import NotFound from './components/NotFound';
 
-
+// App component
 function App() {
 
   return (

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 
+// NotFound component
 const NotFound = () => (
     <div className="wrap">
         <h2>Not Found</h2>

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import UserContext from '../context/UserContext.jsx';
 import ValidationErrors from './ValidationErrors.jsx';
 
+// Create a new course
 const Create = () => {
     const [courseTitle, setCourseTitle] = useState("");
     const [courseDescription, setCourseDescription] = useState("");

@@ -1,8 +1,10 @@
 import { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
+// UserContext
 const UserContext = createContext();
 
+// UserProvider
 export const UserProvider = ({ children }) => {
     const [authUser, setAuthUser] = useState(null);
 

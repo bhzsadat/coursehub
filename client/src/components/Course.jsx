@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import UserContext from '../context/UserContext.jsx';
 
 
-
+// Course component
 const Course = () => {
     const { id } = useParams();
     const { authUser } = useContext(UserContext);
