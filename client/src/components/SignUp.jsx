@@ -36,7 +36,7 @@ const SignUp = () => {
                 navigate('/'); 
             } else if (response.status === 400) {
                 const data = await response.json();
-                setErrors(data.message);
+                setErrors(Array.isArray(data.message) ? data.message : [data.message]);
             } else {
                 navigate('/error');
             }

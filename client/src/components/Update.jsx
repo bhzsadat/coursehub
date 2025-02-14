@@ -27,6 +27,10 @@ const Update = () => {
                     setCourseDescription(course.description || '');
                     setEstimatedTime(course.estimatedTime || '');
                     setMaterialsNeeded(course.materialsNeeded || '');
+                    if (course.User) {
+                        const authorName = `${course.User.firstName} ${course.User.lastName}`;
+                        setAuthorName(authorName);
+                    }
                 } else {
                     navigate('/notfound'); 
                 }
@@ -63,13 +67,13 @@ const Update = () => {
                 navigate(`/courses/${id}`); 
             } else if (response.status === 400) {
                 const data = await response.json();
-                setErrors(data.message);
+                setErrors(Array.isArray(data.message) ? data.message : [data.message]);
             } else if (response.status === 403) {
-                navigate('/forbidden');
+                setErrors(['You do not have permission to update this course.']);
             } else if (response.status === 404) {
                 navigate('/notfound');
             } else {
-                navigate('/error');
+                throw new Error('Something went wrong');
             }
         } catch (error) {
             console.error('Error updating course:', error);
@@ -94,13 +98,7 @@ const Update = () => {
                                 onChange={(e) => setCourseTitle(e.target.value)}
                             />
                             <label htmlFor="authorName">Author Name</label>
-                            <input
-                                id="authorName"
-                                name="authorName"
-                                type="text"
-                                value={authorName}
-                                onChange={(e) => setAuthorName(e.target.value)}
-                            />
+                            <p>{authorName}</p>
                             <label htmlFor="courseDescription">Course Description</label>
                             <textarea
                                 id="courseDescription"

@@ -43,6 +43,9 @@ router.post('/users', async (req, res) => {
     try {
         console.log('Request body:', req.body);
         const { firstName, lastName, emailAddress, password } = req.body;
+        if (!emailAddress || !password) {
+            return res.status(400).json({ message: 'Email and password are required.' });
+        }
         const hashedPassword = await bcryptjs.hash(password, 10);
         const user = await Users.create({
             firstName,
@@ -101,12 +104,40 @@ router.get('/courses', async (req, res) => {
 // Get a course by id
 router.get('/courses/:id', async (req, res) => {
     try {
-        const course = await Courses.findByPk(req.params.id);
-        res.status(200).json(course);
+        const course = await Courses.findByPk(req.params.id, {
+            include: {
+                model: Users,  // Include the associated Users model
+                attributes: ['firstName', 'lastName']  // Only fetch necessary fields (author's name)
+            }
+        });
+
+        if (!course) {
+            return res.status(404).json({ message: 'Course not found' });
+        }
+
+        res.json(course);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        console.error('Error fetching course:', error);
+        res.status(500).json({ message: 'Failed to fetch the course' });
     }
 });
+
+// router.get('/courses/:id', async (req, res) => {
+//     try {
+//         const course = await Courses.findOne({
+//             where: { id: req.params.id },
+//             include: [{
+//                 model: Users,
+//                 as: 'author',  // Ensure this matches the alias defined in the model
+//                 attributes: ['firstName', 'lastName'] // Only fetch the name fields
+//             }]
+//         });
+//         // const course = await Courses.findByPk(req.params.id);
+//         res.status(200).json(course);
+//     } catch (error) {
+//         res.status(500).json({ message: error.message });
+//     }
+// });
 
 // Create a course
 router.post('/courses', authenticateUser, async (req, res) => {

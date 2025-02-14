@@ -79,6 +79,8 @@ const Create = () => {
                                 value={authorName}
                                 onChange={(e) => setAuthorName(e.target.value)}
                             />
+                            <label>Course Owner</label>
+                            <p>{authorName}</p>
                             <label htmlFor="courseDescription">Course Description</label>
                             <textarea
                                 id="courseDescription"
