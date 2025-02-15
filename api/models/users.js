@@ -70,15 +70,6 @@ module.exports = (sequelize, DataTypes) => {
           }
       },
     },
-    // password: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    //   validate: {
-    //     notEmpty: {
-    //       msg: "Password is required"
-    //     }
-    //   }
-    // }
   }, {
     sequelize,
     modelName: 'Users',

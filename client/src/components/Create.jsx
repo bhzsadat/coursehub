@@ -9,7 +9,7 @@ const Create = () => {
     const [courseDescription, setCourseDescription] = useState("");
     const [estimatedTime, setEstimatedTime] = useState("");
     const [materialsNeeded, setMaterialsNeeded] = useState("");
-    const [authorName, setAuthorName] = useState("");
+    const [authorName] = useState("");
     const [errors, setErrors] = useState([]);
     const { authUser } = useContext(UserContext);
     const navigate = useNavigate();
