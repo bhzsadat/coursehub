@@ -12,6 +12,7 @@ const Course = () => {
     const [course, setCourse] = useState({});
     const [errors, setErrors] = useState([]);
 
+    // Fetch course data
     useEffect(() => {
         const fetchCourse = async () => {
             const response = await fetch(`http://localhost:5000/api/courses/${id}`);
@@ -25,6 +26,7 @@ const Course = () => {
         fetchCourse();
     }, [id, navigate]);
 
+    // Handle delete course
     const handleDelete = async () => {
         if (!authUser) {
             navigate('/signin');
@@ -59,6 +61,7 @@ const Course = () => {
         return <p>Loading...</p>;
     }
 
+    // Render course details
     return (
         <main>
             <div className="actions--bar">

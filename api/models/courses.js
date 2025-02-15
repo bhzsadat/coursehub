@@ -1,4 +1,6 @@
 'use strict';
+
+// Courses model
 const {
   Model
 } = require('sequelize');

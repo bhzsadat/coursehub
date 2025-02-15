@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const Courses = () => {
     const [courses, setCourses] = useState([]);
 
+    // Fetch courses
     useEffect(() => {
         fetch("http://localhost:5000/api/courses")
             .then((res) => res.json())
@@ -12,6 +13,7 @@ const Courses = () => {
             .catch((error) => console.error("Error:", error));
     }, []);
 
+    // Display courses
     return (
         <main>
             <div className="wrap main--grid">

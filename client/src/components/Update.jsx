@@ -15,6 +15,7 @@ const Update = () => {
     const [errors, setErrors] = useState([]);
     const navigate = useNavigate();
 
+    // Fetch course data
     useEffect(() => {
         if (!authUser) {
             navigate('/signin');
@@ -40,6 +41,7 @@ const Update = () => {
     }, [authUser, id, navigate]);
    
 
+    // Handle form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (!authUser) {
@@ -53,6 +55,7 @@ const Update = () => {
             materialsNeeded,
         };
 
+        // Send a PUT request to update the course
         try {
             const response = await fetch(`http://localhost:5000/api/courses/${id}`, {
                 method: 'PUT',
@@ -81,6 +84,7 @@ const Update = () => {
         }
     };
 
+    // Render the form
     return (
         <main>
             <div className="wrap">

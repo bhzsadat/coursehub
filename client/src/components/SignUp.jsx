@@ -13,6 +13,7 @@ const SignUp = () => {
     const { signIn } = useContext(UserContext);
     const navigate = useNavigate();
 
+    // Handle sign up
     const handleSubmit = async (event) => {
         event.preventDefault();
         const newUser = {
@@ -21,7 +22,7 @@ const SignUp = () => {
             emailAddress: email,
             password,
         };
-
+        // Send a POST request to the API to create a new user
         try {
             const response = await fetch('http://localhost:5000/api/users', {
                 method: 'POST',
@@ -46,6 +47,7 @@ const SignUp = () => {
         }
     };
 
+    // Render sign up form
     return (
         <div className="form--centered">
             <h2>Sign Up</h2>

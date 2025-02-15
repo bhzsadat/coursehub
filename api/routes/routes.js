@@ -42,7 +42,6 @@ const authenticateUser = async (req, res, next) => {
 router.post('/users', async (req, res) => {
     try {
         const { firstName, lastName, emailAddress, password } = req.body;
-        //const hashedPassword = await bcryptjs.hash(password, 10);
         const user = await Users.create({
             firstName,
             lastName,
@@ -102,8 +101,8 @@ router.get('/courses/:id', async (req, res) => {
     try {
         const course = await Courses.findByPk(req.params.id, {
             include: {
-                model: Users,  // Include the associated Users model
-                attributes: ['firstName', 'lastName']  // Only fetch necessary fields (author's name)
+                model: Users,  
+                attributes: ['firstName', 'lastName']  
             }
         });
 

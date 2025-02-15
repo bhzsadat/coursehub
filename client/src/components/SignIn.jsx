@@ -10,6 +10,7 @@ const SignIn = () => {
     const { signIn } = useContext(UserContext);
     const navigate = useNavigate();
 
+    // Handle sign in
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -20,6 +21,7 @@ const SignIn = () => {
         }
     };
 
+    // Render sign in form
     return (
         <div className="form--centered">
             <h2>Sign In</h2>

@@ -7,11 +7,13 @@ const Header = () => {
     const { authUser, signOut } = useContext(UserContext);
     const navigate = useNavigate();
 
+    // Handle sign out
     const handleSignOut = () => {
         signOut();
         navigate('/');
     };
 
+    // Render the header
     return (
         <header>
             <div className="wrap header--flex">

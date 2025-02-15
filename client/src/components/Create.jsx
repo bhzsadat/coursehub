@@ -14,6 +14,7 @@ const Create = () => {
     const { authUser } = useContext(UserContext);
     const navigate = useNavigate();
 
+    // Handle form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (!authUser) {
@@ -21,6 +22,7 @@ const Create = () => {
             return;
         }
 
+        // Create a new course object
         const newCourse = {
             title: courseTitle,
             description: courseDescription,
@@ -30,6 +32,7 @@ const Create = () => {
             userId: authUser.id
         };
 
+        // Send a POST request to create a new course
         try {
             const response = await fetch('http://localhost:5000/api/courses', {
                 method: 'POST',
@@ -55,6 +58,7 @@ const Create = () => {
         }
     };
 
+    // Render the form
     return (
         <main>
             <div className="wrap">
