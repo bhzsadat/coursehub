@@ -1,4 +1,6 @@
 'use strict';
+
+const bcryptjs = require("bcryptjs");
 const {
   Model
 } = require('sequelize');
@@ -54,11 +56,29 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notEmpty: {
-          msg: "Password is required"
-        }
-      }
-    }
+          notNull: {
+              msg: "A password is required",
+          },
+          notEmpty: {
+              msg: "Please provide a password",
+          },
+      },
+      set(val) {
+          if (val) {
+              const hashedPassword = bcryptjs.hashSync(val, 10);
+              this.setDataValue("password", hashedPassword);
+          }
+      },
+    },
+    // password: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    //   validate: {
+    //     notEmpty: {
+    //       msg: "Password is required"
+    //     }
+    //   }
+    // }
   }, {
     sequelize,
     modelName: 'Users',

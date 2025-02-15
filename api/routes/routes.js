@@ -41,17 +41,13 @@ const authenticateUser = async (req, res, next) => {
 // Sign up user
 router.post('/users', async (req, res) => {
     try {
-        console.log('Request body:', req.body);
         const { firstName, lastName, emailAddress, password } = req.body;
-        if (!emailAddress || !password) {
-            return res.status(400).json({ message: 'Email and password are required.' });
-        }
-        const hashedPassword = await bcryptjs.hash(password, 10);
+        //const hashedPassword = await bcryptjs.hash(password, 10);
         const user = await Users.create({
             firstName,
             lastName,
             emailAddress,
-            password: hashedPassword
+            password
         });
         res.status(201).json(user);
     } catch (error) {
@@ -122,22 +118,7 @@ router.get('/courses/:id', async (req, res) => {
     }
 });
 
-// router.get('/courses/:id', async (req, res) => {
-//     try {
-//         const course = await Courses.findOne({
-//             where: { id: req.params.id },
-//             include: [{
-//                 model: Users,
-//                 as: 'author',  // Ensure this matches the alias defined in the model
-//                 attributes: ['firstName', 'lastName'] // Only fetch the name fields
-//             }]
-//         });
-//         // const course = await Courses.findByPk(req.params.id);
-//         res.status(200).json(course);
-//     } catch (error) {
-//         res.status(500).json({ message: error.message });
-//     }
-// });
+
 
 // Create a course
 router.post('/courses', authenticateUser, async (req, res) => {
@@ -173,7 +154,11 @@ router.put('/courses/:id', authenticateUser, async (req, res) => {
         }
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ message: error.message });
+        if (error.name === 'SequelizeValidationError') {
+            res.status(400).json({ message: error.errors.map(e => e.message) });
+        } else {
+            res.status(500).json({ message: error.message });
+        }
     }
 });
 
