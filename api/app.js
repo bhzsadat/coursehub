@@ -57,9 +57,9 @@ app.use((err, req, res, next) => {
 });
 
 // Set our port
-app.set('port', process.env.PORT || 5000);
+const PORT = process.env.PORT || 5000;
 
 // Start listening on our port
-const server = app.listen(app.get('port'), () => {
+app.listen(PORT, () => {
   console.log(`Express server is listening on port ${server.address().port}`);
 });
