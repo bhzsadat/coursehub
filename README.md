@@ -1,4 +1,9 @@
-# full_stack_app_with_react_and_a_rest_api-v1
-
+# CourseHub
+Full-stack course platform with user auth and CRUD.
+- **Stack**: React, Node.js, Express, MongoDB
+- **Features**: Login/signup, view/add/edit courses, creator-only perms
+- **Run Locally**:
  Run npm install in /api and /client
  Run npm start in /api and npm run dev in /client
+
+- **Demo**: 
