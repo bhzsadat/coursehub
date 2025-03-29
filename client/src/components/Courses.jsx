@@ -7,7 +7,7 @@ const Courses = () => {
 
     // Fetch courses
     useEffect(() => {
-        fetch("https://coursehub-xi.vercel.app/api/courses")
+        fetch("http://coursehub-xi.vercel.app/api/courses")
             .then((res) => res.json())
             .then((data) => setCourses(data))
             .catch((error) => console.error("Error:", error));
