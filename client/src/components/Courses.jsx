@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 // Courses component
 const Courses = () => {
     const [courses, setCourses] = useState([]);
+    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
 
     // Fetch courses
     useEffect(() => {
-        fetch("https://coursehub-xi.vercel.app/api/courses")
+        fetch(`${API_BASE_URL}/courses`)
             .then((res) => res.json())
             .then((data) => setCourses(data))
             .catch((error) => console.error("Error:", error));

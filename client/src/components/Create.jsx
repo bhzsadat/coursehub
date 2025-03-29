@@ -13,6 +13,7 @@ const Create = () => {
     const [errors, setErrors] = useState([]);
     const { authUser } = useContext(UserContext);
     const navigate = useNavigate();
+    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
 
     // Handle form submission
     const handleSubmit = async (event) => {
@@ -34,7 +35,7 @@ const Create = () => {
 
         // Send a POST request to create a new course
         try {
-            const response = await fetch('https://coursehub-xi.vercel.app/api/courses', {
+            const response = await fetch(`${API_BASE_URL}/courses`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
