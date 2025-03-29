@@ -9,7 +9,7 @@ export const UserProvider = ({ children }) => {
     const [authUser, setAuthUser] = useState(null);
 
     const signIn = async (email, password) => {
-        const response = await fetch('http://localhost:5000/api/users/signin', {
+        const response = await fetch('https://coursehub-xi.vercel.app/api/users/signin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
