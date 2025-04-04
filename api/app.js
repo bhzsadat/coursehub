@@ -15,20 +15,20 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-
+app.use('/api', routes);
 
 // Setup morgan which gives us http request logging
 app.use(morgan('dev'));
 
 // Test the database connection.
-(async () => {
-  try {
-    await sequelize.authenticate();
-    console.log('Connection to the database successful!');
-  } catch (error) {
-    console.error('Error connecting to the database: ', error);
-  }
-})();
+// (async () => {
+//   try {
+//     await sequelize.authenticate();
+//     console.log('Connection to the database successful!');
+//   } catch (error) {
+//     console.error('Error connecting to the database: ', error);
+//   }
+// })();
 
 // Setup a friendly greeting for the root route
 app.get('/', (req, res) => {

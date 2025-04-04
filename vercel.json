@@ -6,7 +6,7 @@
         "use": "@vercel/node"
       },
       {
-        "src": "dist/**",
+        "src": "client/dist/**",
         "use": "@vercel/static"
       }
     ],
@@ -17,11 +17,11 @@
       },
       {
         "src": "/assets/(.*)",
-        "dest": "dist/assets/$1"
+        "dest": "client/dist/assets/$1"
       },
       {
         "src": "/(.*)",
-        "dest": "dist/index.html"
+        "dest": "client/dist/index.html"
       }
     ]
   }
