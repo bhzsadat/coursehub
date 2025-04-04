@@ -8,7 +8,7 @@ const { sequelize } = require('./models');
 const routes = require('./routes/routes');
 const bodyParser = require('body-parser');
 const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'true';
-
+require('dotenv').config();
 // Create the Express app
 const app = express();
 
