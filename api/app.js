@@ -15,7 +15,7 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use('/api', routes);
+
 
 // Setup morgan which gives us http request logging
 app.use(morgan('dev'));
