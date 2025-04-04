@@ -36,6 +36,9 @@ app.get('/', (req, res) => {
     message: 'Welcome to the REST API project!',
   });
 });
+app.get('/api/test', (req, res) => {
+  res.json({ message: 'Test API route works!' });
+});
 
 // Send 404 if no other route matched
 app.use((req, res) => {
