@@ -12,6 +12,14 @@ const db = {};
 let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else if (config.dialect === 'sqlite') {
+  // SQLite-specific setup
+  const dbPath = path.join(__dirname, '..', config.storage); // Absolute path to /api/fsjstd-restapi.db
+  sequelize = new Sequelize({
+    dialect: 'sqlite',
+    storage: dbPath,
+    logging: console.log // Optional: debug SQL queries in logs
+  });
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }

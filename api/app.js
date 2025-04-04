@@ -61,5 +61,5 @@ const PORT = process.env.PORT || 5000;
 
 // Start listening on our port
 app.listen(PORT, () => {
-  console.log(`Express server is listening on port ${server.address().port}`);
+  console.log(`Express server is listening on port ${PORT}`);
 });
