@@ -8,7 +8,7 @@ const Courses = () => {
 
     // Fetch courses
     useEffect(() => {
-        fetch(`${API_BASE_URL}/courses`)
+        fetch(`/courses`)
             .then((res) => res.json())
             .then((data) => setCourses(data))
             .catch((error) => console.error("Error:", error));
