@@ -60,9 +60,10 @@ app.use((err, req, res, next) => {
 });
 
 // Set our port
-const PORT = process.env.PORT || 5000;
+// const PORT = process.env.PORT || 5000;
 
-// Start listening on our port
-app.listen(PORT, () => {
-  console.log(`Express server is listening on port ${PORT}`);
-});
+// // Start listening on our port
+// app.listen(PORT, () => {
+//   console.log(`Express server is listening on port ${PORT}`);
+// });
+module.exports = app;
