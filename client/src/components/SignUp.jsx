@@ -12,7 +12,6 @@ const SignUp = () => {
     const [errors, setErrors] = useState([]);
     const { signIn } = useContext(UserContext);
     const navigate = useNavigate();
-    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
     // Handle sign up
     const handleSubmit = async (event) => {

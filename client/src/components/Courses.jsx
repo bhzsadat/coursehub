@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 // Courses component
 const Courses = () => {
     const [courses, setCourses] = useState([]);
-    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
     // Fetch courses
     useEffect(() => {
