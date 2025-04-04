@@ -22,7 +22,7 @@ const Update = () => {
             navigate('/signin');
         } else {
             const fetchCourse = async () => {
-                const response = await fetch(`${API_BASE_URL}/courses/${id}`);
+                const response = await fetch(`/api/courses/${id}`);
                 if (response.ok) {
                     const course = await response.json();
                     setCourseTitle(course.title || '');
@@ -58,7 +58,7 @@ const Update = () => {
 
         // Send a PUT request to update the course
         try {
-            const response = await fetch(`${API_BASE_URL}/courses/${id}`, {
+            const response = await fetch(`/api/courses/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

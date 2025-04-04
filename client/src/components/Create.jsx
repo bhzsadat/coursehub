@@ -35,7 +35,7 @@ const Create = () => {
 
         // Send a POST request to create a new course
         try {
-            const response = await fetch(`${API_BASE_URL}/courses`, {
+            const response = await fetch(`/api/courses`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -16,7 +16,7 @@ const Course = () => {
     // Fetch course data
     useEffect(() => {
         const fetchCourse = async () => {
-            const response = await fetch(`${API_BASE_URL}/courses/${id}`);
+            const response = await fetch(`/api/courses/${id}`);
             if (response.ok) {
                 const course = await response.json();
                 setCourse(course);
@@ -35,7 +35,7 @@ const Course = () => {
         }
 
         try {
-            const response = await fetch(`${API_BASE_URL}/courses/${id}`, {
+            const response = await fetch(`/api/courses/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': 'Basic ' + btoa(`${authUser.emailAddress}:${authUser.password}`)
