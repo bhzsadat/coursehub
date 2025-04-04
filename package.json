@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node api/app.js",
-    "build": "npm run build:client",
-    "build:client": "cd client && npm install && npm run build",
+    "build": "cd client && npm install && npm run build",
     "postinstall": "npm install --prefix api && npm install --prefix client"
   },
   "dependencies": {

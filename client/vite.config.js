@@ -9,4 +9,4 @@ export default defineConfig({
     outDir: '../dist', // Output to /coursehub/dist/
     emptyOutDir: true // Clear /dist/ before building
   }
-})
+});
