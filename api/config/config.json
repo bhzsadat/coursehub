@@ -15,7 +15,6 @@
     "dialect": "mysql"
   },
   "production": {
-    "url": process.env.POSTGRES_URL,
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {

@@ -10,9 +10,9 @@ const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 
 let sequelize;
-if (env === 'production') {
+if (env === 'production' && process.env.POSTGRES_URL) {
   sequelize = new Sequelize(process.env.POSTGRES_URL, {
-    dialect: 'postgres',
+    ...config,
     dialectOptions: {
       ssl: {
         require: true,
