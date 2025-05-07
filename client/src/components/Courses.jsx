@@ -12,11 +12,8 @@ const Courses = () => {
             try {
                 const response = await fetch('https://coursehub-xpiq.onrender.com/api/courses', {
                     method: 'GET',
-                    mode: 'cors',
-                    credentials: 'include',
                     headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
+                        'Content-Type': 'application/json'
                     }
                 });
                 

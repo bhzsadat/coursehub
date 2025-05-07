@@ -13,12 +13,7 @@ const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'tr
 const app = express();
 
 // Middleware
-app.use(cors({
-  origin: ['https://coursehub-kky8rhtse-bhzsadats-projects.vercel.app', 'http://localhost:5173'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
-  credentials: true
-}));
+app.use(cors()); // Allow all origins
 app.use(bodyParser.json());
 app.use('/api', routes);
 
