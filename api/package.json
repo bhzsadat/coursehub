@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon ./app.js",
-    "seed": "cross-env DB_ENABLE_LOGGING=true node './seed'"
+    "seed": "cross-env DB_ENABLE_LOGGING=true node './seed'",
+    "migrate": "node migrate.js"
   },
   "keywords": [],
   "author": "",
@@ -20,8 +21,9 @@
     "cross-env": "^7.0.2",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
+    "pg": "^8.15.6",
+    "pg-hstore": "^2.3.4",
     "promise.prototype.finally": "^3.1.2",
-    "sequelize": "^6.37.5",
-    "sqlite3": "^5.1.7"
+    "sequelize": "^6.37.5"
   }
 }
