@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "build": "cd client && npm run build",
+    "start": "cd api && npm start",
+    "deploy": "vercel --prod"
+  },
   "dependencies": {
     "axios": "^1.7.9",
     "base-64": "^1.0.0",
