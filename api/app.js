@@ -15,9 +15,11 @@ const app = express();
 // Middleware
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? [process.env.CLIENT_URL] // Add your client URL here
-    : 'http://localhost:5173', // Development client URL
-  credentials: true
+    ? [process.env.CLIENT_URL, 'https://coursehub-nnu35hefk-bhzsadats-projects.vercel.app']
+    : ['http://localhost:5173', 'http://localhost:3000'],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(bodyParser.json());
 app.use('/api', routes);

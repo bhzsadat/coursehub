@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../context/UserContext.jsx';
 import ValidationErrors from './ValidationErrors.jsx';
-import { getApiUrl } from '../config.js';
+import { getApiUrl, defaultFetchOptions } from '../config.js';
 
 // SignUp component
 const SignUp = () => {
@@ -26,10 +26,8 @@ const SignUp = () => {
         // Send a POST request to the API to create a new user
         try {
             const response = await fetch(getApiUrl('/api/users'), {
+                ...defaultFetchOptions,
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
                 body: JSON.stringify(newUser),
             });
 
