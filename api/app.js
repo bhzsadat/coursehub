@@ -23,10 +23,24 @@ app.use(morgan('dev'));
 // Test the database connection.
 (async () => {
   try {
+    console.log('Attempting to connect to the database...');
+    console.log('Environment:', process.env.NODE_ENV);
+    console.log('Database URL exists:', !!process.env.POSTGRES_URL);
+    
     await sequelize.authenticate();
     console.log('Connection to the database successful!');
+    
+    // Sync database
+    console.log('Syncing database...');
+    await sequelize.sync();
+    console.log('Database sync completed!');
   } catch (error) {
     console.error('Error connecting to the database: ', error);
+    console.error('Error details:', {
+      name: error.name,
+      message: error.message,
+      stack: error.stack
+    });
   }
 })();
 
