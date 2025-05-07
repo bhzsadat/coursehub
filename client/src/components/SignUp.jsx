@@ -24,7 +24,7 @@ const SignUp = () => {
         };
         // Send a POST request to the API to create a new user
         try {
-            const response = await fetch('/api/users', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/users`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
