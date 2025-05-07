@@ -2,6 +2,7 @@ import { useState, useContext  } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import UserContext from '../context/UserContext.jsx';
 import ValidationErrors from './ValidationErrors.jsx';
+import { getApiUrl } from '../config.js';
 
 // Create a new course
 const Create = () => {
@@ -34,7 +35,7 @@ const Create = () => {
 
         // Send a POST request to create a new course
         try {
-            const response = await fetch('/api/courses', {
+            const response = await fetch(getApiUrl('/api/courses'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -46,11 +47,9 @@ const Create = () => {
                 navigate('/'); 
             } else if (response.status === 400) {
                 const data = await response.json();
-                setErrors(data.message);
+                setErrors(Array.isArray(data.message) ? data.message : [data.message]);
             } else {
-                const errorData = await response.json();
-                console.error('Error creating course:', errorData);
-                throw new Error('Something went wrong');
+                throw new Error('Failed to create course');
             }
         } catch (error) {
             console.error('Error creating course:', error);
