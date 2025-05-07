@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import UserContext from '../context/UserContext.jsx';
 import ValidationErrors from './ValidationErrors.jsx';
+import { getApiUrl } from '../config.js';
 
 // Update component
 const Update = () => {
@@ -21,7 +22,7 @@ const Update = () => {
             navigate('/signin');
         } else {
             const fetchCourse = async () => {
-                const response = await fetch(`/api/courses/${id}`);
+                const response = await fetch(getApiUrl(`/api/courses/${id}`));
                 if (response.ok) {
                     const course = await response.json();
                     setCourseTitle(course.title || '');
@@ -57,7 +58,7 @@ const Update = () => {
 
         // Send a PUT request to update the course
         try {
-            const response = await fetch(`/api/courses/${id}`, {
+            const response = await fetch(getApiUrl(`/api/courses/${id}`), {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

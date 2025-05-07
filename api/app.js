@@ -12,8 +12,21 @@ const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'tr
 // Create the Express app
 const app = express();
 
+// CORS configuration
+const corsOptions = {
+    origin: [
+        'http://localhost:5173', // Local development
+        'https://coursehub-xpiq.onrender.com', // Render API
+        /^https:\/\/coursehub-.*\.vercel\.app$/, // Vercel preview URLs
+        'https://coursehub.vercel.app' // Production Vercel URL
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+};
+
 // Middleware
-app.use(cors()); // Allow all origins
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use('/api', routes);
 

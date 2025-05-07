@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import ReactMarkdown from 'react-markdown';
 import UserContext from '../context/UserContext.jsx';
+import { getApiUrl } from '../config.js';
 
 
 // Course component
@@ -15,7 +16,7 @@ const Course = () => {
     // Fetch course data
     useEffect(() => {
         const fetchCourse = async () => {
-            const response = await fetch(`/api/courses/${id}`);
+            const response = await fetch(getApiUrl(`/api/courses/${id}`));
             if (response.ok) {
                 const course = await response.json();
                 setCourse(course);
@@ -34,7 +35,7 @@ const Course = () => {
         }
 
         try {
-            const response = await fetch(`/api/courses/${id}`, {
+            const response = await fetch(getApiUrl(`/api/courses/${id}`), {
                 method: 'DELETE',
                 headers: {
                     'Authorization': 'Basic ' + btoa(`${authUser.emailAddress}:${authUser.password}`)
