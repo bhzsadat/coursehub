@@ -89,10 +89,21 @@ router.post('/users/signin', authenticateUser, async (req, res) => {
 // Get all courses
 router.get('/courses', async (req, res) => {
     try {
+        console.log('Attempting to fetch all courses...');
         const courses = await Courses.findAll();
+        console.log('Courses fetched successfully:', courses.length);
         res.status(200).json(courses);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        console.error('Error fetching courses:', error);
+        console.error('Error details:', {
+            name: error.name,
+            message: error.message,
+            stack: error.stack
+        });
+        res.status(500).json({ 
+            message: error.message,
+            details: error.name
+        });
     }
 });
 
