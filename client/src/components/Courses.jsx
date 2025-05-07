@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getApiUrl, defaultFetchOptions } from '../config.js';
 
 // Courses component
 const Courses = () => {
@@ -13,6 +12,8 @@ const Courses = () => {
             try {
                 const response = await fetch('https://coursehub-xpiq.onrender.com/api/courses', {
                     method: 'GET',
+                    mode: 'cors',
+                    credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'

@@ -14,12 +14,10 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? [process.env.CLIENT_URL, 'https://coursehub-nnu35hefk-bhzsadats-projects.vercel.app']
-    : ['http://localhost:5173', 'http://localhost:3000'],
-  credentials: true,
+  origin: ['https://coursehub-kky8rhtse-bhzsadats-projects.vercel.app', 'http://localhost:5173'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+  credentials: true
 }));
 app.use(bodyParser.json());
 app.use('/api', routes);
