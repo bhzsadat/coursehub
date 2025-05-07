@@ -1,5 +1,5 @@
 // API configuration
-export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL = 'https://coursehub-xpiq.onrender.com';
 
 // Helper function to get full API URL
 export const getApiUrl = (endpoint) => {
@@ -8,8 +8,9 @@ export const getApiUrl = (endpoint) => {
 
 // Default fetch options
 export const defaultFetchOptions = {
-    credentials: 'include',
+    method: 'GET',
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
     }
 }; 

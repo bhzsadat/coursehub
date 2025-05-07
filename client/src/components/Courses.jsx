@@ -5,26 +5,38 @@ import { getApiUrl, defaultFetchOptions } from '../config.js';
 // Courses component
 const Courses = () => {
     const [courses, setCourses] = useState([]);
+    const [error, setError] = useState(null);
 
     // Fetch courses
     useEffect(() => {
-        const apiUrl = getApiUrl('/api/courses');
-        console.log('API URL:', apiUrl);
-        console.log('Fetch options:', defaultFetchOptions);
-        
-        fetch(apiUrl, defaultFetchOptions)
-            .then((res) => {
-                console.log('Response status:', res.status);
-                return res.json();
-            })
-            .then((data) => {
-                console.log('Data received:', data);
+        const fetchCourses = async () => {
+            try {
+                const response = await fetch('https://coursehub-xpiq.onrender.com/api/courses', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
                 setCourses(data);
-            })
-            .catch((error) => {
-                console.error("Error details:", error);
-            });
+            } catch (error) {
+                console.error('Error fetching courses:', error);
+                setError(error.message);
+            }
+        };
+
+        fetchCourses();
     }, []);
+
+    if (error) {
+        return <div>Error loading courses: {error}</div>;
+    }
 
     // Display courses
     return (
