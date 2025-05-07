@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getApiUrl, defaultFetchOptions } from '../config.js';
 
 // Courses component
 const Courses = () => {
@@ -7,7 +8,7 @@ const Courses = () => {
 
     // Fetch courses
     useEffect(() => {
-        fetch('/api/courses')
+        fetch(getApiUrl('/api/courses'), defaultFetchOptions)
             .then((res) => res.json())
             .then((data) => setCourses(data))
             .catch((error) => console.error("Error:", error));
