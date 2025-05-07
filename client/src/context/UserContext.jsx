@@ -1,5 +1,6 @@
 import { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
+import { getApiUrl } from '../config.js';
 
 // UserContext
 const UserContext = createContext();
@@ -9,7 +10,7 @@ export const UserProvider = ({ children }) => {
     const [authUser, setAuthUser] = useState(null);
 
     const signIn = async (email, password) => {
-        const response = await fetch('/api/users/signin', {
+        const response = await fetch(getApiUrl('/api/users/signin'), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
