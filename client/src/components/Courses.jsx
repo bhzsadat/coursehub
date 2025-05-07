@@ -8,10 +8,22 @@ const Courses = () => {
 
     // Fetch courses
     useEffect(() => {
-        fetch(getApiUrl('/api/courses'), defaultFetchOptions)
-            .then((res) => res.json())
-            .then((data) => setCourses(data))
-            .catch((error) => console.error("Error:", error));
+        const apiUrl = getApiUrl('/api/courses');
+        console.log('API URL:', apiUrl);
+        console.log('Fetch options:', defaultFetchOptions);
+        
+        fetch(apiUrl, defaultFetchOptions)
+            .then((res) => {
+                console.log('Response status:', res.status);
+                return res.json();
+            })
+            .then((data) => {
+                console.log('Data received:', data);
+                setCourses(data);
+            })
+            .catch((error) => {
+                console.error("Error details:", error);
+            });
     }, []);
 
     // Display courses
