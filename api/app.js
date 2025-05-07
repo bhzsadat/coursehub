@@ -13,7 +13,12 @@ const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'tr
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' 
+    ? [process.env.CLIENT_URL] // Add your client URL here
+    : 'http://localhost:5173', // Development client URL
+  credentials: true
+}));
 app.use(bodyParser.json());
 app.use('/api', routes);
 
