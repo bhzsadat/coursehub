@@ -25,9 +25,12 @@ const corsOptions = {
     credentials: true
 };
 
+// Increase payload size limit
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
 // Middleware
 app.use(cors(corsOptions));
-app.use(bodyParser.json());
 app.use('/api', routes);
 
 // Setup morgan which gives us http request logging
@@ -77,16 +80,35 @@ app.use((err, req, res, next) => {
     console.error(`Global error handler: ${JSON.stringify(err.stack)}`);
   }
 
+  // Handle timeout errors
+  if (err.code === 'ETIMEDOUT' || err.code === 'ESOCKETTIMEDOUT') {
+    return res.status(504).json({
+      message: 'Request timeout. Please try again.',
+      error: err.message
+    });
+  }
+
+  // Handle database errors
+  if (err.name === 'SequelizeDatabaseError') {
+    return res.status(500).json({
+      message: 'Database error occurred',
+      error: err.message
+    });
+  }
+
   res.status(err.status || 500).json({
-    message: err.message,
-    error: {},
+    message: err.message || 'Internal Server Error',
+    error: process.env.NODE_ENV === 'development' ? err : {}
   });
 });
 
 // Set our port
 app.set('port', process.env.PORT || 5000);
 
-// Start listening on our port
+// Increase timeout
 const server = app.listen(app.get('port'), () => {
   console.log(`Express server is listening on port ${server.address().port}`);
 });
+
+// Set server timeout
+server.timeout = 120000; // 2 minutes

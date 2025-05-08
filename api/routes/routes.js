@@ -3,6 +3,7 @@ const router = express.Router();
 const { Users, Courses } = require('../models');
 const bcryptjs = require('bcryptjs');
 const auth = require('basic-auth');
+const { sequelize } = require('../models');
 
 
 
@@ -138,12 +139,25 @@ router.post('/courses', authenticateUser, async (req, res) => {
             userId: req.currentUser.id
         });
         
-        const course = await Courses.create({
-            ...req.body,
-            userId: req.currentUser.id
+        // Validate required fields
+        const { title, description } = req.body;
+        if (!title || !description) {
+            return res.status(400).json({ 
+                message: 'Title and description are required' 
+            });
+        }
+
+        // Create course with transaction
+        const result = await sequelize.transaction(async (t) => {
+            const course = await Courses.create({
+                ...req.body,
+                userId: req.currentUser.id
+            }, { transaction: t });
+            return course;
         });
-        console.log('Course created successfully:', course.id);
-        res.status(201).json(course);
+
+        console.log('Course created successfully:', result.id);
+        res.status(201).json(result);
     } catch (error) {
         console.error('Error creating course:', {
             name: error.name,
@@ -156,6 +170,11 @@ router.post('/courses', authenticateUser, async (req, res) => {
             res.status(400).json({ message: error.errors.map(e => e.message) });
         } else if (error.name === 'SequelizeForeignKeyConstraintError') {
             res.status(400).json({ message: 'Invalid user reference' });
+        } else if (error.name === 'SequelizeDatabaseError') {
+            res.status(500).json({ 
+                message: 'Database error occurred',
+                error: error.message
+            });
         } else {
             res.status(500).json({ 
                 message: 'Failed to create course',
