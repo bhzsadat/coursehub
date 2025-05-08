@@ -133,17 +133,34 @@ router.get('/courses/:id', async (req, res) => {
 // Create a course
 router.post('/courses', authenticateUser, async (req, res) => {
     try {
+        console.log('Attempting to create course with data:', {
+            ...req.body,
+            userId: req.currentUser.id
+        });
+        
         const course = await Courses.create({
             ...req.body,
             userId: req.currentUser.id
         });
+        console.log('Course created successfully:', course.id);
         res.status(201).json(course);
     } catch (error) {
-        console.error('Error:', error);
+        console.error('Error creating course:', {
+            name: error.name,
+            message: error.message,
+            stack: error.stack,
+            validationErrors: error.errors
+        });
+        
         if (error.name === 'SequelizeValidationError') {
             res.status(400).json({ message: error.errors.map(e => e.message) });
+        } else if (error.name === 'SequelizeForeignKeyConstraintError') {
+            res.status(400).json({ message: 'Invalid user reference' });
         } else {
-            res.status(500).json({ message: error.message });
+            res.status(500).json({ 
+                message: 'Failed to create course',
+                error: error.message
+            });
         }
     }
 });
