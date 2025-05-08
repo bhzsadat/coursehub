@@ -1,6 +1,6 @@
 'use strict';
 
-const bcryptjs = require("bcryptjs");
+const bcryptjs = require('bcryptjs');
 // Users model
 const {
   Model
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notEmpty: {
-          msg: "First name is required"
+          msg: 'First name is required'
         }
       }
     },
@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notEmpty: {
-          msg: "Last name is required"
+          msg: 'Last name is required'
         }
       }
     },
@@ -46,10 +46,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         isEmail: {
-          msg: "Must be a valid email address"
+          msg: 'Must be a valid email address'
         },
         notEmpty: {
-          msg: "Email address is required"
+          msg: 'Email address is required'
         }
       }
     },
@@ -57,18 +57,18 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-          notNull: {
-              msg: "A password is required",
-          },
-          notEmpty: {
-              msg: "Please provide a password",
-          },
+        notNull: {
+          msg: 'A password is required',
+        },
+        notEmpty: {
+          msg: 'Please provide a password',
+        },
       },
       set(val) {
-          if (val) {
-              const hashedPassword = bcryptjs.hashSync(val, 10);
-              this.setDataValue("password", hashedPassword);
-          }
+        if (val) {
+          const hashedPassword = bcryptjs.hashSync(val, 10);
+          this.setDataValue('password', hashedPassword);
+        }
       },
     },
   }, {

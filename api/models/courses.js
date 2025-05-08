@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
           name: 'userId',
           allowNull: false
         }
-      })
+      });
     }
   }
   Courses.init({
@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notEmpty: {
-          msg: "Title is required"
+          msg: 'Title is required'
         }
       }
     },
@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notEmpty: {
-          msg: "Description is required"
+          msg: 'Description is required'
         }
       }
     },

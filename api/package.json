@@ -7,12 +7,15 @@
     "start": "node ./app.js",
     "dev": "nodemon ./app.js",
     "seed": "cross-env DB_ENABLE_LOGGING=true node './seed'",
-    "migrate": "node migrate.js"
+    "migrate": "node migrate.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^8.57.1",
     "nodemon": "^1.18.3",
     "sequelize-cli": "^6.6.2"
   },
