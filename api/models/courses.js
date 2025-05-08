@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Courses.init({
     title: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
       validate: {
         notEmpty: {
@@ -48,8 +48,14 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },    
-    estimatedTime: DataTypes.STRING,
-    materialsNeeded: DataTypes.STRING
+    estimatedTime: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    materialsNeeded: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    }
   }, {
     sequelize,
     modelName: 'Courses',
