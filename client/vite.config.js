@@ -3,7 +3,17 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react({
+      // Ensure React is in production mode
+      jsxRuntime: 'automatic',
+      babel: {
+        plugins: [
+          ['@babel/plugin-transform-react-jsx', { runtime: 'automatic' }]
+        ]
+      }
+    })
+  ],
   server: {
     proxy: {
       '/api': {
@@ -23,4 +33,9 @@ export default defineConfig({
       },
     },
   },
+  // Explicitly set production mode
+  mode: 'production',
+  define: {
+    'process.env.NODE_ENV': JSON.stringify('production')
+  }
 })
