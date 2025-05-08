@@ -98,6 +98,12 @@ const Course = () => {
                                 <p>By {course.User.firstName} {course.User.lastName}</p>
                             )}
                             <p>{course.description}</p>
+                            {course.estimatedTime && (
+                                <>
+                                    <h3 className="course--detail--title">Estimated Time</h3>
+                                    <p>{course.estimatedTime}</p>
+                                </>
+                            )}
                         </div>
                         <div>
                             <h3 className="course--detail--title">Materials Needed</h3>
