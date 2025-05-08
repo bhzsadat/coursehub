@@ -12,4 +12,15 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    minify: 'terser',
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+        },
+      },
+    },
+  },
 })
