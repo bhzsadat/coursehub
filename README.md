@@ -52,6 +52,7 @@ cd coursehub
 ```
 
 2. Install dependencies for both frontend and backend:
+   
 ```bash
 # Install backend dependencies
 cd api
