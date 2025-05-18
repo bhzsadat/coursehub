@@ -45,7 +45,7 @@ The application is deployed using:
 
 ### Installation
 
-1. Clone the repository:
+1. Clone the repository "dev branch":
 ```bash
 git clone <repository-url>
 cd coursehub
