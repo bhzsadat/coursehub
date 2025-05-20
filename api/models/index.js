@@ -18,7 +18,10 @@ if (env === 'production' && process.env.POSTGRES_URL) {
         require: true,
         rejectUnauthorized: false
       }
-    }
+    },
+    dialect: 'postgres',
+    protocol: 'postgres',
+    logging: false // Set to true for debugging
   });
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
