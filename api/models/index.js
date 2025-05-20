@@ -17,11 +17,23 @@ if (env === 'production' && process.env.POSTGRES_URL) {
       ssl: {
         require: true,
         rejectUnauthorized: false
-      }
+      },
+      // Force IPv4
+      family: 4,
+      // Add connection timeout
+      connectTimeout: 10000,
+      // Add statement timeout
+      statement_timeout: 10000
     },
     dialect: 'postgres',
     protocol: 'postgres',
-    logging: false // Set to true for debugging
+    logging: false, // Set to true for debugging
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    }
   });
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
