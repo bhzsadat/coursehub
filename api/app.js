@@ -4,6 +4,7 @@ const express = require('express');
 var cors = require('cors');
 const morgan = require('morgan');
 const Sequelize = require('sequelize');
+require('dotenv').config();
 const { sequelize } = require('./models');
 const routes = require('./routes/routes');
 const bodyParser = require('body-parser');
